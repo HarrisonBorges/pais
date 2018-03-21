@@ -93,10 +93,29 @@ public class Cliente {
         return existe;
     }
 
+    public boolean tamNome(){
+        if(this.getNome().length() < 5){
+            return false;
+        }
+        return true;
+    }
+    
+     public boolean tamPais(){
+        if(this.getPais() == null){
+            return false;
+        }
+        return true;
+    }
+    
+    
         public void atribuirLimite(){
             GregorianCalendar dataAtual = new GregorianCalendar();
+            String local = pais.getNomePais();
+            
             int idade = dataAtual.get(Calendar.YEAR) - this.getDataNasc().get(Calendar.YEAR);
             double credito = 0;
+            
+            
             if(idade <= 18){
                 credito = 100;
             }else if(idade > 18 && idade <= 35){
@@ -104,6 +123,10 @@ public class Cliente {
             }else{
                 credito = 500;
             }
+            if(local.equals("brasil")){
+             credito += 100;   
+            }
+            
             
             this.setLimiteCredito(credito);
         }
